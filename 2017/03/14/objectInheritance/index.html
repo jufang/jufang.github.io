@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="inheritance," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="水墨小龙虾的博客,前端开发攻城狮,攻城日志">
-<meta property="og:type" content="website">
-<meta property="og:title" content="smxlx">
-<meta property="og:url" content="http://smxlx.com/index.html">
+<meta name="description" content="构造函数1234567891011121314151617var Book=function(id,name,price)&amp;#123;    var a=1;    this.id=id;    this.name=name;    this.price=price;    this.getPirce=function()&amp;#123;        return this.price    &amp;#1">
+<meta name="keywords" content="inheritance">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript 对象继承">
+<meta property="og:url" content="http://smxlx.com/2017/03/14/objectInheritance/index.html">
 <meta property="og:site_name" content="smxlx">
-<meta property="og:description" content="水墨小龙虾的博客,前端开发攻城狮,攻城日志">
+<meta property="og:description" content="构造函数1234567891011121314151617var Book=function(id,name,price)&amp;#123;    var a=1;    this.id=id;    this.name=name;    this.price=price;    this.getPirce=function()&amp;#123;        return this.price    &amp;#1">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-04T11:36:58.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="smxlx">
-<meta name="twitter:description" content="水墨小龙虾的博客,前端开发攻城狮,攻城日志">
+<meta name="twitter:title" content="javascript 对象继承">
+<meta name="twitter:description" content="构造函数1234567891011121314151617var Book=function(id,name,price)&amp;#123;    var a=1;    this.id=id;    this.name=name;    this.price=price;    this.getPirce=function()&amp;#123;        return this.price    &amp;#1">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://smxlx.com/"/>
+  <link rel="canonical" href="http://smxlx.com/2017/03/14/objectInheritance/"/>
 
 
 
 
 
-  <title>smxlx</title>
+  <title>javascript 对象继承 | smxlx</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,305 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/04/13/microEvent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="smxlx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="smxlx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/13/microEvent/" itemprop="url">microEvent.js 微事件</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T20:04:27+08:00">
-                2017-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="npm-安装"><a href="#npm-安装" class="headerlink" title="npm 安装"></a>npm 安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i microevent-github --save</div></pre></td></tr></table></figure>
-<h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;microevent.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h1 id="node"><a href="#node" class="headerlink" title="node"></a>node</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var MicroEvent = require(&apos;./microevent.js&apos;)</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/13/microEvent/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/03/15/simpleAmdLoader/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="smxlx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="smxlx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/15/simpleAmdLoader/" itemprop="url">写一个简单的模块加载</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T19:39:37+08:00">
-                2017-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="模块定义"><a href="#模块定义" class="headerlink" title="模块定义"></a>模块定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function define(name,dependencies,factory)&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="模块使用-传一个对应模块名称，然后返回此模块的回调函数"><a href="#模块使用-传一个对应模块名称，然后返回此模块的回调函数" class="headerlink" title="模块使用,传一个对应模块名称，然后返回此模块的回调函数"></a>模块使用,传一个对应模块名称，然后返回此模块的回调函数</h1><p>use(name)</p>
-<h1 id="模块加载"><a href="#模块加载" class="headerlink" title="模块加载"></a>模块加载</h1><p>可以加载那些必须的，剩下的在需要的时候去加载<br>require([mod1…modn],callback)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/15/simpleAmdLoader/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -599,9 +304,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/14/objectInheritance/" itemprop="url">javascript 对象继承</a></h2>
+          <h2 class="post-title" itemprop="name headline">javascript 对象继承</h2>
         
 
         <div class="post-meta">
@@ -673,16 +376,18 @@
       
 
       
-        
-          <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var Book=function(id,name,price)&#123;</div><div class="line">    var a=1;</div><div class="line">    this.id=id;</div><div class="line">    this.name=name;</div><div class="line">    this.price=price;</div><div class="line">    this.getPirce=function()&#123;</div><div class="line">        return this.price</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Book.prototype.display=function()&#123;</div><div class="line">//展示这本书</div><div class="line">&#125;</div><div class="line">var book1 = new Book(1,&quot;js设计&quot;,100);</div><div class="line"></div><div class="line">var book2 = new Book(2,&quot;nodejs指南&quot;,50);</div><div class="line"></div><div class="line">Book.isChinese=true //类静态公有属性（实例化对象不能访问）</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/14/objectInheritance/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var Book=function(id,name,price)&#123;</div><div class="line">    var a=1;</div><div class="line">    this.id=id;</div><div class="line">    this.name=name;</div><div class="line">    this.price=price;</div><div class="line">    this.getPirce=function()&#123;</div><div class="line">        return this.price</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Book.prototype.display=function()&#123;</div><div class="line">//展示这本书</div><div class="line">&#125;</div><div class="line">var book1 = new Book(1,&quot;js设计&quot;,100);</div><div class="line"></div><div class="line">var book2 = new Book(2,&quot;nodejs指南&quot;,50);</div><div class="line"></div><div class="line">Book.isChinese=true //类静态公有属性（实例化对象不能访问）</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>打印book1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//Book</div><div class="line">    getPirce:function()</div><div class="line">    id:1</div><div class="line">    name:&quot;js设计&quot;</div><div class="line">    price:100</div><div class="line">    __proto__:Object</div><div class="line">        constructor:function(id,name,price)</div><div class="line">        display:function()</div><div class="line">        __proto__:Object</div></pre></td></tr></table></figure></p>
+<h1 id="子类的原型对象-类式继承"><a href="#子类的原型对象-类式继承" class="headerlink" title="子类的原型对象-类式继承"></a>子类的原型对象-类式继承</h1><p>缺点，如果父类公有属性是引用类型如数组，就会被所有子类的实例公有，其中一个实例更改公有数据会直接影响到其他子类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Father()&#123;</div><div class="line">    this.fVal=true;</div><div class="line">&#125;</div><div class="line">Father.prototype.getFatherVal=function()&#123;</div><div class="line">    return this.fVal</div><div class="line">&#125;</div><div class="line">function Children()&#123;</div><div class="line">    this.cVal=false;</div><div class="line">&#125;</div><div class="line">Children.prototype=new Father();</div><div class="line">Children.prototype.getChildVal=function()&#123;</div><div class="line">    return this.cVal</div><div class="line">&#125;</div><div class="line">var instance=new Children();</div></pre></td></tr></table></figure></p>
+<p>打印instance:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cVal:false</div><div class="line">__proto__:Father</div><div class="line">    fVal:true</div><div class="line">    getChildVal:function()</div><div class="line">    __proto__:Object</div><div class="line">        constructor:function Father()</div><div class="line">        getFatherVal:function()</div><div class="line">        __proto__:Object</div></pre></td></tr></table></figure></p>
+<h1 id="创建即继承-构造函数继承"><a href="#创建即继承-构造函数继承" class="headerlink" title="创建即继承-构造函数继承"></a>创建即继承-构造函数继承</h1><p>缺点：父类的原型方法不会被子类继承<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//申明父类</div><div class="line">function Father(id)&#123;</div><div class="line">    //值类型共有属性</div><div class="line">    this.id=id</div><div class="line">    //引用类型共用属性</div><div class="line">    this.books=[&apos;Javascript&apos;,&apos;nodejs&apos;,&apos;css&apos;]</div><div class="line">&#125;</div><div class="line">Father.prototype.showBooks=function()&#123;</div><div class="line">    return this.books</div><div class="line">&#125;</div><div class="line">//申明子类</div><div class="line">function Children(id)&#123;</div><div class="line">    Father.call(this,id)   //call改变函数的作用环境，子类继承父类的共有属性和方法。</div><div class="line">&#125;</div><div class="line">var instance1=new Children(10);</div><div class="line">var instance2=new Children(12);</div><div class="line">instance1.books.push(&apos;设计模式&apos;)</div><div class="line">console.log(instance1.id,instance1.books)  //10,[&quot;Javascript&quot;, &quot;nodejs&quot;, &quot;css&quot;, &quot;设计模式&quot;]</div><div class="line">console.log(instance1.id,instance2.books)  //12,[&quot;Javascript&quot;, &quot;nodejs&quot;, &quot;css&quot;]</div><div class="line">instance1.showBooks() //TypeError</div></pre></td></tr></table></figure></p>
+<h1 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h1><p>缺点:构造函数式继承执行一遍父类的构造函数，子类原型的类方式继承又调用一次父类的构造函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">//申明父类的构造函数</div><div class="line">function Father(id)&#123;</div><div class="line">    //值类型共有属性</div><div class="line">    this.id=id</div><div class="line">    //引用类型共用属性</div><div class="line">    this.books=[&apos;Javascript&apos;,&apos;nodejs&apos;,&apos;css&apos;]</div><div class="line">&#125;</div><div class="line">//父类申明原型方法</div><div class="line">Father.prototype.getId=function()&#123;</div><div class="line">    console.log(this.id)</div><div class="line">&#125;</div><div class="line">//申明子类</div><div class="line">function Children(id,price)&#123;</div><div class="line">    //构造函数式继承父类id属性和books</div><div class="line">    Father.call(this,id);</div><div class="line">    //子类新增共用属性</div><div class="line">    this.price=price</div><div class="line">&#125;</div><div class="line">Children.prototype=new Father();</div><div class="line">Children.prototype.getPrice=function()&#123;</div><div class="line">    console.log(this.price)</div><div class="line">&#125;</div><div class="line"></div><div class="line">var instance1=new Children(10,50.00)</div><div class="line">instance1.books.push(&apos;设计模式&apos;);</div><div class="line"></div><div class="line">var instance2=new Children(12,65.00);</div></pre></td></tr></table></figure></p>
+<p>打印instance1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">id:10</div><div class="line">books:[&apos;Javascript&apos;,&apos;nodejs&apos;,&apos;css&apos;,&apos;设计模式&apos;]</div><div class="line">price:50,</div><div class="line">__proto__:Father</div><div class="line">    id:undefind</div><div class="line">    books:[&apos;Javascript&apos;,&apos;nodejs&apos;,&apos;css&apos;]</div><div class="line">    getPrice:function()</div><div class="line">    __proto__:Object</div><div class="line">        constructor:function Father(id)</div><div class="line">        getId:function()</div><div class="line">        __proto__:Object</div></pre></td></tr></table></figure></p>
+<h1 id="洁净的继承者-原型式继承"><a href="#洁净的继承者-原型式继承" class="headerlink" title="洁净的继承者-原型式继承"></a>洁净的继承者-原型式继承</h1><p>缺点：同类式继承<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function inhertObject(o)&#123;</div><div class="line">    //过渡函数对象</div><div class="line">    function F()&#123;&#125;</div><div class="line">    //过渡对象原型继承父对象</div><div class="line">    F.prototype=o</div><div class="line">    //返回过渡对象的一个实例，该实例原型继承父对象</div><div class="line">    return new F()</div><div class="line">&#125;</div><div class="line">var books=&#123;</div><div class="line">    name:&apos;js book&apos;,</div><div class="line">    alikebook:[&apos;css&apos;,&apos;html&apos;]</div><div class="line">&#125;</div><div class="line">var book1=inhertObject(books);</div><div class="line">book1.name=&apos;ajax book&apos;</div><div class="line">book1.alikebook.push(&apos;xml&apos;)</div><div class="line"></div><div class="line">var book2=inhertObject(books);</div><div class="line">book2.name=&apos;flash book&apos;</div><div class="line">book2.alikebook.push(&apos;actionscript&apos;)</div></pre></td></tr></table></figure></p>
+<h1 id="终极组合继承"><a href="#终极组合继承" class="headerlink" title="终极组合继承"></a>终极组合继承</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">function inhertObject(o)&#123;</div><div class="line">        //过渡函数对象</div><div class="line">        function F()&#123;&#125;</div><div class="line">        //过渡对象原型继承父对象</div><div class="line">        F.prototype=o</div><div class="line">        //返回过渡对象的一个实例，该实例原型继承父对象</div><div class="line">        return new F()</div><div class="line">    &#125;</div><div class="line">    function inhertProto(children,father)&#123;</div><div class="line">        //复制一份父类的原型副本保存在变量中</div><div class="line">        var p=inhertObject(father.prototype)</div><div class="line">        //修正因为改写子类导致子类的constructor熟悉被修改</div><div class="line">        p.constructor=children;</div><div class="line">        //修改子类的原型</div><div class="line">        children.prototype=p;</div><div class="line">    &#125;</div><div class="line">    //申明父类的构造函数</div><div class="line">    function Father(id)&#123;</div><div class="line">        //值类型共有属性</div><div class="line">        this.id=id</div><div class="line">        //引用类型共用属性</div><div class="line">        this.books=[&apos;Javascript&apos;,&apos;nodejs&apos;,&apos;css&apos;]</div><div class="line">    &#125;</div><div class="line">    //父类申明原型方法</div><div class="line">    Father.prototype.getId=function()&#123;</div><div class="line">        console.log(this.id)</div><div class="line">    &#125;</div><div class="line">    //申明子类</div><div class="line">    function Children(id,price)&#123;</div><div class="line">        //构造函数式继承父类id属性和books</div><div class="line">        Father.call(this,id);</div><div class="line">        //子类新增共用属性</div><div class="line">        this.price=price</div><div class="line">    &#125;</div><div class="line">    //Children.prototype=new Father();</div><div class="line">    inhertProto(Children,Father);</div><div class="line">    Children.prototype.getPrice=function()&#123;</div><div class="line">        console.log(this.price)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var instance1=new Children(10,50.00)</div><div class="line">    instance1.books.push(&apos;设计模式&apos;);</div><div class="line"></div><div class="line">    var instance2=new Children(12,65.00);</div></pre></td></tr></table></figure>
+<p>打印instance1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">id:10</div><div class="line">books:[&apos;Javascript&apos;,&apos;nodejs&apos;,&apos;css&apos;,&apos;设计模式&apos;]</div><div class="line">price:50,</div><div class="line">__proto__:Father</div><div class="line">    constructor:function Children(id,price)</div><div class="line">    getPrice:function()</div><div class="line">    __proto__:Object</div><div class="line">        constructor:function Father(id)</div><div class="line">        getId:function()</div><div class="line">        __proto__:Object</div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -692,312 +397,74 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏，是超越赞的一种表达。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="smxlx 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.png" alt="smxlx 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/03/03/proxyAndCache/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="smxlx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="smxlx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/03/proxyAndCache/" itemprop="url">node代理与缓存</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T19:17:48+08:00">
-                2017-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/inheritance/" rel="tag"># inheritance</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h1 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h1><p>正向代理的过程，它隐藏真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务器都被代理服务代替请求，比如浏览器访问google.com，被拦截，于是你在国外搭建一台代理服务器，让代理服务器请求google.com 代理把请求结果返回给我反向代理隐藏真实的服务端<br><img src="/uploads/proxy/1.png" alt="正向代理过程"><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/03/proxyAndCache/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/03/proxyAndCache/" rel="next" title="node代理与缓存">
+                <i class="fa fa-chevron-left"></i> node代理与缓存
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/03/03/CompatibleClosure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="smxlx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="smxlx">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/03/CompatibleClosure/" itemprop="url">兼容各版本的闭包函数</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T19:07:56+08:00">
-                2017-03-03
-              </time>
+              <a href="/2017/03/15/simpleAmdLoader/" rel="prev" title="写一个简单的模块加载">
+                写一个简单的模块加载 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>通常一个自执行的闭包函数是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function(this,$)&#123;</div><div class="line">...</div><div class="line">&#125;(window,jQuery))</div></pre></td></tr></table></figure></p>
-<p>等同于下面写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!function(this,$)&#123;</div><div class="line">...</div><div class="line">&#125;(window,jQuery)</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/03/CompatibleClosure/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1007,14 +474,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1022,6 +486,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1042,8 +510,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1117,6 +594,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数"><span class="nav-number">1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子类的原型对象-类式继承"><span class="nav-number">2.</span> <span class="nav-text">子类的原型对象-类式继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建即继承-构造函数继承"><span class="nav-number">3.</span> <span class="nav-text">创建即继承-构造函数继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合继承"><span class="nav-number">4.</span> <span class="nav-text">组合继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#洁净的继承者-原型式继承"><span class="nav-number">5.</span> <span class="nav-text">洁净的继承者-原型式继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#终极组合继承"><span class="nav-number">6.</span> <span class="nav-text">终极组合继承</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1253,6 +746,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="node,proxy," />
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="水墨小龙虾的博客,前端开发攻城狮,攻城日志">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://smxlx.com/tags/index.html">
+<meta name="description" content="正向代理正向代理的过程，它隐藏真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务器都被代理服务代替请求，比如浏览器访问google.com，被拦截，于是你在国外搭建一台代理服务器，让代理服务器请求google.com 代理把请求结果返回给我反向代理隐藏真实的服务端">
+<meta name="keywords" content="node,proxy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node代理与缓存">
+<meta property="og:url" content="http://smxlx.com/2017/03/03/proxyAndCache/index.html">
 <meta property="og:site_name" content="smxlx">
-<meta property="og:description" content="水墨小龙虾的博客,前端开发攻城狮,攻城日志">
+<meta property="og:description" content="正向代理正向代理的过程，它隐藏真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务器都被代理服务代替请求，比如浏览器访问google.com，被拦截，于是你在国外搭建一台代理服务器，让代理服务器请求google.com 代理把请求结果返回给我反向代理隐藏真实的服务端">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-04T03:31:05.795Z">
+<meta property="og:image" content="http://smxlx.com/uploads/proxy/1.png">
+<meta property="og:image" content="http://smxlx.com/uploads/proxy/2.png">
+<meta property="og:updated_time" content="2017-11-04T11:29:30.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="水墨小龙虾的博客,前端开发攻城狮,攻城日志">
+<meta name="twitter:title" content="node代理与缓存">
+<meta name="twitter:description" content="正向代理正向代理的过程，它隐藏真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务器都被代理服务代替请求，比如浏览器访问google.com，被拦截，于是你在国外搭建一台代理服务器，让代理服务器请求google.com 代理把请求结果返回给我反向代理隐藏真实的服务端">
+<meta name="twitter:image" content="http://smxlx.com/uploads/proxy/1.png">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://smxlx.com/tags/"/>
+  <link rel="canonical" href="http://smxlx.com/2017/03/03/proxyAndCache/"/>
 
 
 
 
 
-  <title>tags | smxlx</title>
+  <title>node代理与缓存 | smxlx</title>
   
 
 
@@ -274,40 +278,206 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/03/03/proxyAndCache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="smxlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="smxlx">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">tags</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 7 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Amd/" style="font-size: 12px; color: #ccc">Amd</a> <a href="/tags/Array/" style="font-size: 12px; color: #ccc">Array</a> <a href="/tags/closure/" style="font-size: 12px; color: #ccc">closure</a> <a href="/tags/inheritance/" style="font-size: 12px; color: #ccc">inheritance</a> <a href="/tags/markdown/" style="font-size: 12px; color: #ccc">markdown</a> <a href="/tags/node/" style="font-size: 30px; color: #111">node</a> <a href="/tags/proxy/" style="font-size: 12px; color: #ccc">proxy</a>
-            </div>
-          </div>
+          <h2 class="post-title" itemprop="name headline">node代理与缓存</h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T19:17:48+08:00">
+                2017-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h1><p>正向代理的过程，它隐藏真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务器都被代理服务代替请求，比如浏览器访问google.com，被拦截，于是你在国外搭建一台代理服务器，让代理服务器请求google.com 代理把请求结果返回给我反向代理隐藏真实的服务端<br><img src="/uploads/proxy/1.png" alt="正向代理过程"><br><a id="more"></a></p>
+<h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><p> 当我们请求www.baidu.com时候，背后有很多服务器为我们服务,www.baidu.com就是我们的反向代理服务器，反向代理服务器会将请求转发到真实的服务器中<br><img src="/uploads/proxy/2.png" alt="反向代理过程"><br>两者的区别在于代理的对象不一样：<em>正向代理代理的对象是客户端，反向代理代理的对象是服务端</em></p>
+<h1 id="node-http-proxy"><a href="#node-http-proxy" class="headerlink" title="node-http-proxy"></a>node-http-proxy</h1><h2 id="一个支持反向代理和负载均衡的npm包"><a href="#一个支持反向代理和负载均衡的npm包" class="headerlink" title="一个支持反向代理和负载均衡的npm包"></a>一个支持反向代理和负载均衡的npm包</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//以前你访问资源是从http://localhost:9000取得，现在通过反向代理服务器http://localhost:8000,他去请求9000端口的内容</div><div class="line">var http = require(&apos;http&apos;),</div><div class="line">    httpProxy = require(&apos;http-proxy&apos;);</div><div class="line"></div><div class="line">// 创建代理服务器</div><div class="line">httpProxy.createProxyServer(&#123;target:&apos;http://localhost:9000&apos;&#125;).listen(8000);</div><div class="line"></div><div class="line">// 创建目标服务器（http://localhost:9000）</div><div class="line">http.createServer(function (req, res) &#123;</div><div class="line">  res.writeHead(200, &#123; &apos;Content-Type&apos;: &apos;text/plain&apos; &#125;);</div><div class="line">  res.write(&apos;request successfully proxied!&apos; + &apos;\n&apos; + JSON.stringify(req.headers, true, 2));</div><div class="line">  res.end();</div><div class="line">&#125;).listen(9000);</div></pre></td></tr></table></figure>
+<h2 id="配置gzip压缩"><a href="#配置gzip压缩" class="headerlink" title="配置gzip压缩"></a>配置gzip压缩</h2><p>  开启网站的 gzip 压缩功能，通常可以高达70%，也就是说，如果你的网页有30K，压缩之后就变成9K， 对于大部分网站，显然可以明显提高浏览速度（注：需要浏览器支持）。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var compression = require(&apos;compression&apos;);</div><div class="line">app.use(compression());</div></pre></td></tr></table></figure></p>
+<h2 id="配置http缓存：maxAge、etag、lastModified等"><a href="#配置http缓存：maxAge、etag、lastModified等" class="headerlink" title="配置http缓存：maxAge、etag、lastModified等"></a>配置http缓存：maxAge、etag、lastModified等</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;),</div><div class="line">  &#123;</div><div class="line">    maxAge:100,</div><div class="line">    etag:true,</div><div class="line">    lastModified:true</div><div class="line">  &#125;</div><div class="line">));</div></pre></td></tr></table></figure>
+<h2 id="配置combo"><a href="#配置combo" class="headerlink" title="配置combo"></a>配置combo</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/javascripts&apos;, </div><div class="line">    combo.combine(&#123;rootPath: path.join(__dirname, &apos;public&apos;)+&apos;/javascripts&apos;&#125;), </div><div class="line">    combo.respond</div><div class="line">);</div><div class="line">app.get(&apos;/stylesheets&apos;, </div><div class="line">    combo.combine(&#123;rootPath: path.join(__dirname, &apos;public&apos;)+&apos;/stylesheets&apos;&#125;), </div><div class="line">    combo.respond</div><div class="line">);</div></pre></td></tr></table></figure>
+<h2 id="配置ssi-SSI是服务器端嵌入指令-在内容发送到浏览器之前，解析指令标签将其内容包含到网页中"><a href="#配置ssi-SSI是服务器端嵌入指令-在内容发送到浏览器之前，解析指令标签将其内容包含到网页中" class="headerlink" title="配置ssi SSI是服务器端嵌入指令,在内容发送到浏览器之前，解析指令标签将其内容包含到网页中"></a>配置ssi SSI是服务器端嵌入指令,在内容发送到浏览器之前，解析指令标签将其内容包含到网页中</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expressSSI.init(express,&apos;http://gome.com.cn&apos;);</div></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏，是超越赞的一种表达。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="smxlx 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.png" alt="smxlx 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/03/CompatibleClosure/" rel="next" title="兼容各版本的闭包函数">
+                <i class="fa fa-chevron-left"></i> 兼容各版本的闭包函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/14/objectInheritance/" rel="prev" title="javascript 对象继承">
+                javascript 对象继承 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -340,8 +510,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -415,6 +594,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正向代理"><span class="nav-number">1.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向代理"><span class="nav-number">2.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-http-proxy"><span class="nav-number">3.</span> <span class="nav-text">node-http-proxy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个支持反向代理和负载均衡的npm包"><span class="nav-number">3.1.</span> <span class="nav-text">一个支持反向代理和负载均衡的npm包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gzip压缩"><span class="nav-number">3.2.</span> <span class="nav-text">配置gzip压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置http缓存：maxAge、etag、lastModified等"><span class="nav-number">3.3.</span> <span class="nav-text">配置http缓存：maxAge、etag、lastModified等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置combo"><span class="nav-number">3.4.</span> <span class="nav-text">配置combo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置ssi-SSI是服务器端嵌入指令-在内容发送到浏览器之前，解析指令标签将其内容包含到网页中"><span class="nav-number">3.5.</span> <span class="nav-text">配置ssi SSI是服务器端嵌入指令,在内容发送到浏览器之前，解析指令标签将其内容包含到网页中</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
