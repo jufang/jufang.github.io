@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="san,mvvm," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="San 框架的官方应用状态管理套件，其理念是类似 flux 的单向流。   提示：使用 san-store 需要同时使用 san-update 2.x 创建状态变更器，san-store 将使用此变更器更新 store 中的应用状态。">
+<meta name="keywords" content="san,mvvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sanstore 一个MVVM的框架,兼容IE6">
+<meta property="og:url" content="http://smxlx.com/2017/11/03/sanstore/index.html">
+<meta property="og:site_name" content="smxlx">
+<meta property="og:description" content="San 框架的官方应用状态管理套件，其理念是类似 flux 的单向流。   提示：使用 san-store 需要同时使用 san-update 2.x 创建状态变更器，san-store 将使用此变更器更新 store 中的应用状态。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/ecomfe/san-store/master/doc/flow.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ecomfe/san-store/master/doc/why-use.png">
+<meta property="og:updated_time" content="2017-11-04T06:43:26.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sanstore 一个MVVM的框架,兼容IE6">
+<meta name="twitter:description" content="San 框架的官方应用状态管理套件，其理念是类似 flux 的单向流。   提示：使用 san-store 需要同时使用 san-update 2.x 创建状态变更器，san-store 将使用此变更器更新 store 中的应用状态。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ecomfe/san-store/master/doc/flow.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://smxlx.com/2017/11/03/sanstore/"/>
+
+
+
+
+
+  <title>sanstore 一个MVVM的框架,兼容IE6 | smxlx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">smxlx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">水墨小龙虾的攻城日志</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/11/03/sanstore/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="smxlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="smxlx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sanstore 一个MVVM的框架,兼容IE6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T21:57:59+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://ecomfe.github.io/san/" target="_blank" rel="external">San</a> 框架的官方应用状态管理套件，其理念是类似 flux 的单向流。</p>
+<p><img src="https://raw.githubusercontent.com/ecomfe/san-store/master/doc/flow.png" alt="flow"></p>
+<blockquote>
+<p>提示：使用 san-store 需要同时使用 <a href="https://github.com/ecomfe/san-update" target="_blank" rel="external">san-update</a> 2.x 创建状态变更器，san-store 将使用此变更器更新 store 中的应用状态。</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li><a href="#下载">下载</a>  </li>
+<li><a href="#使用">使用</a>  </li>
+<li><a href="#示例项目">示例项目</a>  </li>
+<li><a href="#为什么要进行应用状态管理">为什么要进行应用状态管理</a>  </li>
+<li><a href="#store和默认实例">Store和默认实例</a>  </li>
+<li><a href="#action">Action</a>  <ul>
+<li><a href="#变更应用状态">变更应用状态</a>  </li>
+<li><a href="#获取当前应用状态">获取当前应用状态</a>  </li>
+<li><a href="#异步过程">异步过程</a>  </li>
+</ul>
+</li>
+<li><a href="#组件的connect">组件的connect</a>  <ul>
+<li><a href="#mapstates">mapstates</a>  </li>
+<li><a href="#mapactions">mapActions</a>  </li>
+</ul>
+</li>
+</ul>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>NPM:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm i san-store</div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="Webpack-Babel"><a href="#Webpack-Babel" class="headerlink" title="Webpack + Babel"></a>Webpack + Babel</h3><p>通过 named import 导入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;store, connect&#125; <span class="keyword">from</span> <span class="string">'san-store'</span>;</div><div class="line"><span class="keyword">import</span> &#123;builder&#125; <span class="keyword">from</span> <span class="string">'san-update'</span>;</div><div class="line"></div><div class="line"></div><div class="line">store.addAction(<span class="string">'changeUserName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> builder().set(<span class="string">'user.name'</span>, name);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> UserNameEditor = san.defineComponent(&#123;</div><div class="line">    submit() &#123;</div><div class="line">        store.dispatch(<span class="string">'changeUserName'</span>, <span class="keyword">this</span>.data.get(<span class="string">'name'</span>));</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">connect.san(&#123;</div><div class="line">    name: <span class="string">'user.name'</span></div><div class="line">&#125;)(UserNameEditor);</div></pre></td></tr></table></figure>
+<p>webpack 环境配置网上有太多文章，在此不赘述了</p>
+<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>通过 require 拿到的 exports 上包含 store 和 connect</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sanStore = <span class="built_in">require</span>(<span class="string">'san-store'</span>);</div><div class="line"><span class="keyword">var</span> store = sanStore.store;</div><div class="line"><span class="keyword">var</span> connect = sanStore.connect;</div><div class="line"><span class="keyword">var</span> builder = <span class="built_in">require</span>(<span class="string">'san-update'</span>).builder;</div><div class="line"></div><div class="line">store.addAction(<span class="string">'changeUserName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> builder().set(<span class="string">'user.name'</span>, name);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> UserNameEditor = san.defineComponent(&#123;</div><div class="line">    submit: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        store.dispatch(<span class="string">'changeUserName'</span>, <span class="keyword">this</span>.data.get(<span class="string">'name'</span>));</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">connect.san(&#123;</div><div class="line">    name: <span class="string">'user.name'</span></div><div class="line">&#125;)(UserNameEditor);</div></pre></td></tr></table></figure>
+<p>请为 amd loader 正确配置 san-store 的引用路径。通过 npm 安装的项目可以采用下面的配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">    baseUrl: <span class="string">'src'</span>,</div><div class="line">    paths: &#123;</div><div class="line">        <span class="string">'san-router'</span>: <span class="string">'../dep/san-store/dist/san-store.source'</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="示例项目"><a href="#示例项目" class="headerlink" title="示例项目"></a>示例项目</h2><p>从例子开始和模仿比死啃枯燥的文档要更人性化。 <a href="https://github.com/ecomfe/san-store/tree/master/example/todos" target="_blank" rel="external">Todos</a> 是如何在项目里使用 san-store 进行状态管理的示例项目。</p>
+<h2 id="为什么要进行应用状态管理"><a href="#为什么要进行应用状态管理" class="headerlink" title="为什么要进行应用状态管理"></a>为什么要进行应用状态管理</h2><p>使用 san-store 进行应用状态管理，就要先接受它的理念：</p>
+<ol>
+<li>单向流</li>
+<li>全局唯一的应用状态源</li>
+<li>状态更新模式单一，不能通过store直接更新应用状态</li>
+</ol>
+<p>那么，使用 san-store 进行应用状态管理，和自己在组件里完成所有事情，有什么区别呢？</p>
+<p><img src="https://raw.githubusercontent.com/ecomfe/san-store/master/doc/why-use.png" alt="why use"></p>
+<h3 id="自己管理你的应用状态"><a href="#自己管理你的应用状态" class="headerlink" title="自己管理你的应用状态"></a>自己管理你的应用状态</h3><p>自己在组件里完成所有事情，意味着你需要自己管理你的应用状态。经验丰富的开发人员能够凭着设计经验和直觉让应用良构，但在不断的迭代与新需求开发的过程，他们需要持续的思考和回答这些问题：</p>
+<ol>
+<li>应用状态数据保存在一个顶层组件还是分散在各个组件内？</li>
+<li>应用状态数据怎么下发给需要使用的组件？</li>
+<li>某个子组件区域的应用状态是否需要和外部绝缘？</li>
+<li>如何更新应用状态数据？双向绑定还是消息通知？</li>
+<li>更深层次组件的交互行为如何通知保存应用状态的组件更新？</li>
+</ol>
+<p>于是，我们很容易把应用做成上面的样子：</p>
+<ol>
+<li>数据的更新流自顶向下</li>
+<li>底层组件的用户交互通过双向绑定更新到上层组件，上层组件刷新所有子组件的视图，同时通过双向绑定继续往上更新</li>
+<li>底层组件的用户交互通过消息向上传递，顶层组件处理消息，更新自身状态数据，然后自顶向下更新</li>
+</ol>
+<p>我们看到，向下的数据更新流和向上的更新流以及消息流是夹杂在一起的。如果管理得当，这样做其实并没有什么问题。但你需要小心翼翼的在不断增加的需求中维护应用的消息流转，你需要清醒的认识到每一个操作带来的状态变更最终将更新到哪个组件，再由它下发。有没有觉得心很累？</p>
+<h3 id="使用-san-store-管理应用状态"><a href="#使用-san-store-管理应用状态" class="headerlink" title="使用 san-store 管理应用状态"></a>使用 san-store 管理应用状态</h3><p>如果使用 san-store 进行应用状态管理，这个流会变得清晰很多：</p>
+<ol>
+<li>所有的应用状态保存在 store 中</li>
+<li>用户交互的唯一出口只有 dispatch action，不是更新双向绑定的上层组件，不是向上派发的消息</li>
+<li>dispatch action 带来的应用状态变更，将更新到 connect 的组件中</li>
+</ol>
+<p>从图中可以看到，组件树上的流将变得清晰，只有自顶向下的更新流。</p>
+<h3 id="是不是要使用-san-store"><a href="#是不是要使用-san-store" class="headerlink" title="是不是要使用 san-store"></a>是不是要使用 san-store</h3><p>我们并不认为 san-store 适合所有场景。统一的进行应用状态管理，只有当你的应用足够大时，它带来维护上的便利才会逐渐显现出来。如果你只是开发一个小系统，并且预期不会有陆续的新需求，那我们并不推荐你使用它。大多数增加可维护性的手段意味着拆分代码到多处，意味着你没有办法在实现一个功能的时候一路到尾畅快淋漓，意味着开发成本可能会上升。</p>
+<p>所以，你应该根据你要做的是一个什么样的应用，决定要不要使用 san-store。</p>
+<h3 id="你需要做什么"><a href="#你需要做什么" class="headerlink" title="你需要做什么"></a>你需要做什么</h3><p>san-store 只是提供了全局唯一状态管理和状态更新方式，你可以天然的实现单向流。但是更重要的是，你需要 <code>为自己的应用划分应用状态</code>。所以你至少需要考虑以下问题：</p>
+<ol>
+<li>你的应用有哪些业务场景？</li>
+<li>每个业务场景有哪些应用状态？</li>
+<li>不同业务场景之间的应用状态是否有相通复用的？</li>
+<li>应用状态数据应该保存成什么结构？</li>
+</ol>
+<p>基于这些，你基本上可以划分应用状态，设计结构，并为它们起一些清晰的命名了。这都是让你的应用良构，你所必须做的设计。</p>
+<h2 id="Store和默认实例"><a href="#Store和默认实例" class="headerlink" title="Store和默认实例"></a>Store和默认实例</h2><p>一个应用具有唯一的应用状态源，在一个地方管理整个应用的所有状态，是一个比较共识的方式。所以 san-store 提供了默认的 store 实例。绝大多数时候，应用开发者不需要手工创建自己的 Store 实例，只需要 import 默认的 store 实例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;store&#125; <span class="keyword">from</span> <span class="string">'san-store'</span>;</div></pre></td></tr></table></figure>
+<p>通过 <code>getState</code> 方法，可以获取 store 中的状态数据。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> appState = store.getState(<span class="string">'user.name'</span>);</div><div class="line"><span class="built_in">console</span>.log(appState);</div></pre></td></tr></table></figure>
+<p>store 并没有提供修改状态数据的方法，修改状态数据只能通过 dispatch action 来做到，具体细节请参考 <a href="#action">Action</a> 章节。通过 <code>addAction</code> 方法可以添加 action。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">store.addAction(<span class="string">'changeUserName'</span>, name =&gt; builder().set(<span class="string">'user.name'</span>, name));</div></pre></td></tr></table></figure>
+<p>当然，你也可以通过 new Store 创建自己的 Store 实例。创建时可以传入初始化数据和声明 actions。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;Store&#125; <span class="keyword">from</span> <span class="string">'san-store'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> myStore = <span class="keyword">new</span> Store(&#123;</div><div class="line">    initData: &#123;</div><div class="line">        user: &#123;</div><div class="line">            name: <span class="string">'your name'</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    actions: &#123;</div><div class="line">        changeUserName(name) &#123;</div><div class="line">            <span class="keyword">return</span> builder().set(<span class="string">'user.name'</span>, name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>本节最后，还是要强调下，应用开发应当遵循 <strong>一个应用具有唯一的应用状态源</strong>。说白了就是 <strong>要按常理出牌</strong>。</p>
+<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p>Action 是 san-store 最重要的组成部分之一，它：</p>
+<ol>
+<li>在一个 store 内每个 action 具有唯一名称，通过名称 dispatch</li>
+<li>是 store 更新状态的唯一入口</li>
+<li>状态更新是同步的，这使得状态更新可依赖当前状态环境，可被记录、被追溯和重放</li>
+</ol>
+<p>如果你使用了 san-store，<strong>Action 应该是你业务组件的唯一出口</strong>：用户操作事件等需要改变应用状态时，都应该 dispatch Action。它的签名如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;updateBuilder?&#125; function (&#123;*&#125;payload, &#123;&#123;Function&#125;getState, &#123;Function&#125;dispatch&#125;)</div></pre></td></tr></table></figure>
+<h3 id="变更应用状态"><a href="#变更应用状态" class="headerlink" title="变更应用状态"></a>变更应用状态</h3><p>Action 接收一个 payload，返回一个 san-update 的 builder 对象。store 使用 builder 对象生成状态变更函数，并执行它，使 store 内部的状态得到更新。当然，如果当前 action 不期望对 store 的状态进行更新，可以不返回 builder 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;updateBuilder&#125; <span class="keyword">from</span> <span class="string">'san-update'</span>;</div><div class="line"></div><div class="line">store.addAction(<span class="string">'changeUserName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> updateBuilder().set(<span class="string">'user.name'</span>, name);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 通过名称 dispatch</span></div><div class="line">store.dispatch(<span class="string">'changeUserName'</span>, <span class="string">'erik'</span>);</div></pre></td></tr></table></figure>
+<p>san-update 是一个 Immutable 的更新对象库，其提供了一些更新函数（如set、push等），通过 <code>newObj = set(oldObj, &#39;x&#39;, 1)</code> 的使用形式让对象更新 Immutable。builder 是 san-update 提供的一个很好用的功能，通过 builder 你可以预定义一系列的数据更新操作，然后通过 <code>builder.build</code> 方法可以获得一个更新函数。san-store 就是利用这个功能，使用 action 返回的 builder 生成对象更新函数，再调用它进行 store 内部状态更新。</p>
+<p>san-update 的 builder 支持预定义所有 san-update 支持的数据操作，通过 <a href="https://github.com/ecomfe/san-update#可用指令" target="_blank" rel="external">san-update文档：可用指令</a> 可以查看所有操作类型。常用的有：</p>
+<ul>
+<li>apply: 对现有数据项应用更新</li>
+<li>set: 设置数据项</li>
+<li>remove: 数组移除项</li>
+<li>push: 数组push操作</li>
+<li>pop: 数组pop操作</li>
+<li>unshift: 数组unshift操作</li>
+<li>shift: 数组shift操作</li>
+<li>splice: 数组splice操作</li>
+</ul>
+<p>使用前请阅读 <a href="https://github.com/ecomfe/san-update#使用builder构建更新函数" target="_blank" rel="external">san-update文档：使用builder构建更新函数</a> 进行详细了解。</p>
+<h3 id="获取当前应用状态"><a href="#获取当前应用状态" class="headerlink" title="获取当前应用状态"></a>获取当前应用状态</h3><p>Action 的第二个参数是一个对象，其中的 getState 方法可以用于获得当前 store 中的应用状态。这个方法是 this 无关的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;updateBuilder&#125; <span class="keyword">from</span> <span class="string">'san-update'</span>;</div><div class="line"></div><div class="line">store.addAction(<span class="string">'initCount'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">count, &#123;getState&#125;</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (getState(<span class="string">'count'</span>) == <span class="literal">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> updateBuilder().set(<span class="string">'count'</span>, count);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">store.dispatch(<span class="string">'initCount'</span>, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<p>如果我们的更新操作仅依赖于当前数据状态项的值，也可以使用 san-update 提供的 apply 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;updateBuilder&#125; <span class="keyword">from</span> <span class="string">'san-update'</span>;</div><div class="line"></div><div class="line">store.addAction(<span class="string">'initCount'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">count</span>) </span>&#123;</div><div class="line">    <span class="comment">// apply 意思是：在原有的值上应用新的值</span></div><div class="line">    <span class="keyword">return</span> updateBuilder().apply(<span class="string">'count'</span>, oldValue =&gt; &#123;</div><div class="line">        <span class="keyword">return</span> oldValue == <span class="literal">null</span> ? count : oldValue;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">store.dispatch(<span class="string">'initCount'</span>, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<h3 id="异步过程"><a href="#异步过程" class="headerlink" title="异步过程"></a>异步过程</h3><p>同步的 Action 返回一个 updateBuilder，并立即更新数据状态，但我们经常会遇到异步的场景，常见的比如请求数据、返回并更新应用状态。Action 在设计上作为 <strong>业务组件的唯一出口</strong>， 对异步支持的方式如下：</p>
+<ol>
+<li>返回一个 Promise 时，当前 Action 为异步</li>
+<li>返回一个 updateBuilder 或什么都不返回时，当前 Action 为异步</li>
+</ol>
+<p>下面是一个简单的例子： 一个列表请求的行为，此时要显示 loading，在请求返回时更新应用状态中的列表项，同时隐藏 loading。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;updateBuilder&#125; <span class="keyword">from</span> <span class="string">'san-update'</span>;</div><div class="line"></div><div class="line">store.addAction(<span class="string">'fetchList'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">page, &#123;getState, dispatch&#125;</span>) </span>&#123;</div><div class="line">    dispatch(<span class="string">'showLoading'</span>);</div><div class="line">    dispatch(<span class="string">'updateCurrentPage'</span>, page);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> requestList(page).then(<span class="function"><span class="params">list</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">if</span> (getState(<span class="string">'currentPage'</span>) === page) &#123;</div><div class="line">            dispatch(<span class="string">'updateList'</span>, list);</div><div class="line">            dispatch(<span class="string">'hideLoading'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">store.addAction(<span class="string">'showLoading'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> updateBuilder().set(<span class="string">'loading'</span>, <span class="literal">true</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">store.addAction(<span class="string">'hideLoading'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> updateBuilder().set(<span class="string">'loading'</span>, <span class="literal">false</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">store.addAction(<span class="string">'updateCurrentPage'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">page</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> updateBuilder().set(<span class="string">'currentPage'</span>, page);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">store.addAction(<span class="string">'updateList'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">list</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> updateBuilder().set(<span class="string">'list'</span>, list);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 这里模拟一下，意思意思</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">requestList</span>(<span class="params">page</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="keyword">let</span> pageList = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line">            resolve(pageList);</div><div class="line">        &#125;, <span class="number">500</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>例子中有下面几个要点：</p>
+<ol>
+<li>异步 Action 可以多次 dispatch 其他的 Action，通过第二个参数对象中的 dispatch 方法。这个方法和 getState 一样，也是 this 无关的。</li>
+<li>fetchList 中马上 updateCurrentPage，在请求返回时使用 getState 方法对 currentPage 判断，能够避免用户快速多次点击页码时发起多个 list 请求，请求返回的顺序不同可能导致问题。</li>
+<li>异步 Action 没有更新应用状态的能力，想要更新应用状态必须 dispatch 同步 Action。下面的代码说明了为什么，感兴趣可以看看。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">store.addAction(<span class="string">'fetchList'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">page, &#123;getState, dispatch&#125;</span>) </span>&#123;</div><div class="line">    dispatch(<span class="string">'showLoading'</span>);</div><div class="line">    dispatch(<span class="string">'updateCurrentPage'</span>, page);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> requestList(page).then(<span class="function"><span class="params">list</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">if</span> (getState(<span class="string">'currentPage'</span>) === page) &#123;</div><div class="line">            dispatch(<span class="string">'hideLoading'</span>);</div><div class="line">            </div><div class="line">            <span class="comment">// 如果异步 Action 支持在 promise 中返回 updateBuilder 并更新状态</span></div><div class="line">            <span class="comment">// 这里的代码就可能导致问题。因为 promise.then 不是马上运行的</span></div><div class="line">            <span class="comment">// 这里的 currentPage 不代表 updateBuilder 运行时的 currentPage</span></div><div class="line">            <span class="comment">// currentPage 可能被另外一个 dispatch fetchList 改掉</span></div><div class="line">            <span class="comment">// 所以这里应该 dispatch 一个同步的 Action 让应用状态即时完成变更</span></div><div class="line">            <span class="comment">// dispatch('updateList', list);  // good</span></div><div class="line">            <span class="keyword">return</span> updateBuilder().set(<span class="string">'list'</span>, list); <span class="comment">// warning</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="组件的connect"><a href="#组件的connect" class="headerlink" title="组件的connect"></a>组件的connect</h2><p>san-store 默认提供对 <a href="https://ecomfe.github.io/san/" target="_blank" rel="external">San</a> 组件的 connect 支持，步骤和 redux 类似：</p>
+<ol>
+<li>通过 <code>connect.san</code> 方法创建一个 connect 组件的函数</li>
+<li>调用这个函数对组件进行connect</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;store, connect&#125; <span class="keyword">from</span> <span class="string">'san-store'</span>;</div><div class="line"></div><div class="line"><span class="keyword">let</span> connector = connect.san(</div><div class="line">    &#123;<span class="attr">name</span>: <span class="string">'user.name'</span>&#125;,</div><div class="line">    &#123;<span class="attr">change</span>: <span class="string">'changeUserName'</span>&#125;</div><div class="line">);</div><div class="line">connector(UserNameEditor);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 通常我们只需要对当前声明的组件进行connect，可以合并成一句</span></div><div class="line">connect.san(</div><div class="line">    &#123;<span class="attr">name</span>: <span class="string">'user.name'</span>&#125;,</div><div class="line">    &#123;<span class="attr">change</span>: <span class="string">'changeUserName'</span>&#125;</div><div class="line">)(UserNameEditor);</div></pre></td></tr></table></figure>
+<p><code>connect.san</code> 方法的签名为，<code>{function(Class)}connect.san({Object}mapStates, {Object?}mapActions)</code></p>
+<blockquote>
+<p>提示：san-store 只提供了对默认 store 实例的 connect 功能</p>
+</blockquote>
+<h3 id="mapStates"><a href="#mapStates" class="headerlink" title="mapStates"></a>mapStates</h3><p><code>Object</code></p>
+<p><code>mapStates</code> 参数指定了要把哪些状态注入到组件，key 是要注入到组件的数据项名称，value 是 store 中状态项的名称。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;store, connect&#125; <span class="keyword">from</span> <span class="string">'san-store'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> UserNameEditor = san.defineComponent(&#123;</div><div class="line">    <span class="comment">// connect 后，name 数据项由 store 提供</span></div><div class="line">    template: <span class="string">'&lt;div title="&#123;&#123;name&#125;&#125;"&gt;......&lt;/div&gt;'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">connect.san(</div><div class="line">    &#123;<span class="attr">name</span>: <span class="string">'user.name'</span>&#125;</div><div class="line">)(UserNameEditor);</div></pre></td></tr></table></figure>
+<h3 id="mapActions"><a href="#mapActions" class="headerlink" title="mapActions"></a>mapActions</h3><p><code>Object</code></p>
+<p>通常我们在组件内通过调用 <code>store.dispatch(actionName, payload)</code> 方法更新应用状态，由于 actionName 的应用全局唯一性，名字需要比较完整，对于组件来说这么长的名称会显得比较冗余。通过 <code>mapActions</code> 可以在组件的 actions 成员上生成 dispatch action 的快捷方法，让组件可以更便捷的 dispatch action。</p>
+<p><code>mapActions</code> 的 key 是要映射到组件 actions 成员上的方法名，value 是 action 的名称。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;store, connect&#125; <span class="keyword">from</span> <span class="string">'san-store'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> UserNameEditor = san.defineComponent(&#123;</div><div class="line">    submit() &#123;</div><div class="line">        <span class="comment">// 通过 mapActions，可以把 dispatch action 简化成组件自身的方法调用</span></div><div class="line">        <span class="comment">// store.dispatch('changeUserName', this.data.get('name'));</span></div><div class="line">        <span class="keyword">this</span>.actions.change(<span class="keyword">this</span>.data.get(<span class="string">'name'</span>));</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">connect.san(</div><div class="line">    &#123;<span class="attr">name</span>: <span class="string">'user.name'</span>&#125;,</div><div class="line">    &#123;<span class="attr">change</span>: <span class="string">'changeUserName'</span>&#125;</div><div class="line">)(UserNameEditor);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏，是超越赞的一种表达。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="smxlx 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.png" alt="smxlx 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/san/" rel="tag"># san</a>
+          
+            <a href="/tags/mvvm/" rel="tag"># mvvm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/03/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/04/reduxLifeCycle/" rel="prev" title="redux 组件的生命周期">
+                redux 组件的生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="smxlx" />
+            
+              <p class="site-author-name" itemprop="name">smxlx</p>
+              <p class="site-description motion-element" itemprop="description">水墨小龙虾的博客,前端开发攻城狮,攻城日志</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jufang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack-Babel"><span class="nav-number">2.1.</span> <span class="nav-text">Webpack + Babel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD"><span class="nav-number">2.2.</span> <span class="nav-text">AMD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例项目"><span class="nav-number">3.</span> <span class="nav-text">示例项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要进行应用状态管理"><span class="nav-number">4.</span> <span class="nav-text">为什么要进行应用状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己管理你的应用状态"><span class="nav-number">4.1.</span> <span class="nav-text">自己管理你的应用状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-san-store-管理应用状态"><span class="nav-number">4.2.</span> <span class="nav-text">使用 san-store 管理应用状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是不是要使用-san-store"><span class="nav-number">4.3.</span> <span class="nav-text">是不是要使用 san-store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你需要做什么"><span class="nav-number">4.4.</span> <span class="nav-text">你需要做什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Store和默认实例"><span class="nav-number">5.</span> <span class="nav-text">Store和默认实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Action"><span class="nav-number">6.</span> <span class="nav-text">Action</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变更应用状态"><span class="nav-number">6.1.</span> <span class="nav-text">变更应用状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前应用状态"><span class="nav-number">6.2.</span> <span class="nav-text">获取当前应用状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步过程"><span class="nav-number">6.3.</span> <span class="nav-text">异步过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的connect"><span class="nav-number">7.</span> <span class="nav-text">组件的connect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mapStates"><span class="nav-number">7.1.</span> <span class="nav-text">mapStates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapActions"><span class="nav-number">7.2.</span> <span class="nav-text">mapActions</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">smxlx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
