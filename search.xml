@@ -79,6 +79,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[使用git写文章的几条命令]]></title>
+    <url>%2F2017%2F03%2F01%2Fhowhexo%2F</url>
+    <content type="text"><![CDATA[到blog所在的代码目录启动命令行 新建文章hexo new howhexo12D:\GOMEWORK\blog&gt; hexo new howhexoINFO Created: D:\GOMEWORK\blog\source\_posts\howhexo.md 启动本地serverhexo server 或者hexo s123D:\GOMEWORK\blog&gt; hexo sINFO Start processingINFO Hexo is running at http://localhost:4000/. Press Ctrl+C to stop. 此时你输入http://localhost:4000/就可以看到你blog的文章了然后你就使用markdown 在source/_posts/howhexo.md 去写文章 再发布之前需要生成一下hexo generate 或 hexo g]]></content>
+      <categories>
+        <category>备忘</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[markdown简单用法]]></title>
     <url>%2F2017%2F03%2F01%2FMarkDownUse%2F</url>
     <content type="text"><![CDATA[标题# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 粗体与斜体两个 包含一段文本就是粗体的语法，用一个 包含一段文本就是斜体的语法。 **这里是粗体***这里是斜体* 列表#### 无序列表* 1* 2* 3 #### 有序列表1. a2. b3. c 引用&gt; 这里是引用，注意&gt;之间的空格 图片与链接图片为：![](){ImgCap}{/ImgCap}链接为：[]() 表格12345| Tables | Are | Cool || ------------- |:-------------:| -----:|| col 3 is | right-aligned | $1600 || col 2 is | centered | $12 || zebra stripes | are neat | $1 | 代码用3 包裹代码块 行内锚点[行内标题](#行内标题) 文章目录 下载 使用 示例项目 Action 变更应用状态 异步过程 组件的connect mapstates mapActions]]></content>
