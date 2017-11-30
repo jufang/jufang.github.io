@@ -579,6 +579,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/03/02/readTimeFunction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="smxlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="smxlx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/02/readTimeFunction/" itemprop="url">友好显示时间差</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T14:00:31+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】<br>我们如何实现这个小功能</p>
+<p>调用方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">  date &#123;Date&#125; 日期格式</div><div class="line">  return &#123;string&#125;</div><div class="line">*/</div><div class="line">function rData(time)&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h1><p>显示几种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var 毫秒差 = 当前时间毫秒数-给定时间毫秒数</div><div class="line">var 秒差 = parseInt(毫秒差 / 1000,10)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>刚刚  <code>秒差 &lt; 60</code></li>
+<li>几分前 <code>秒差 &lt; 60 * 60</code></li>
+<li>几时前 <code>秒差 &lt; 60 * 60 * 24</code></li>
+<li>几天前 <code>秒差 &lt; 60 * 60 * 24 * 7</code></li>
+<li>几周前 <code>秒差 &lt; 60 * 60 * 24 * 7 *2</code> 只显示7天到14天前的数据，显示1周前</li>
+<li>显示年月日 </li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">function rData(date,curDate)&#123;</div><div class="line">  var curDate = curDate || new Date();</div><div class="line">  var timeStamp =  parseInt((+curDate - +date)/1000,10);</div><div class="line"></div><div class="line">  return timeStamp &lt; 60 ? &apos;刚刚&apos;:</div><div class="line">    (timeStamp /= 60)&lt;60 ? parseInt(timeStamp)+&apos;分钟前&apos;:</div><div class="line">    (timeStamp /= 60)&lt;24 ? parseInt(timeStamp)+&apos;小时前&apos;:</div><div class="line">    (timeStamp /= 24)&lt;7 ? parseInt(timeStamp)+&apos;天前&apos;:</div><div class="line">    (timeStamp /= 7)&lt;2 ? parseInt(timeStamp)+&apos;周前&apos;:</div><div class="line">    date &gt; new Date(curDate.getFullYear()+&apos;-01-01&apos;) </div><div class="line">      ? (date.getMonth()+1)+&apos;月&apos;+date.getDate()+&apos;日&apos; :</div><div class="line">      date.getFullYear()+&apos;年&apos;+(date.getMonth()+1)+&apos;月&apos;+date.getDate()+&apos;日&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//测试 </div><div class="line">var d1 =  new Date(&apos;2017-03-02 14:00:30&apos;)</div><div class="line">Thu Mar 02 2017 14:00:30 GMT+0800 (中国标准时间)</div><div class="line">rData(d1,new Date(&apos;2017-03-02 14:00:31&apos;))  //&quot;刚刚&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-02 14:02:31&apos;))  //&quot;2分钟前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-02 18:02:31&apos;))  //&quot;4小时前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-05 18:02:31&apos;))  //&quot;3天前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-09 18:02:31&apos;))  //&quot;1周前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-16 18:02:31&apos;))  //&quot;3月2日&quot;</div><div class="line">rData(d1,new Date(&apos;2018-03-16 18:02:31&apos;))  //&quot;2017年3月2日&quot;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://smxlx.com/2017/03/01/howhexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,7 +1068,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -938,7 +1090,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

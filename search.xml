@@ -79,6 +79,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[友好显示时间差]]></title>
+    <url>%2F2017%2F03%2F02%2FreadTimeFunction%2F</url>
+    <content type="text"><![CDATA[在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/* date &#123;Date&#125; 日期格式 return &#123;string&#125;*/function rData(time)&#123; ...&#125; 情形显示几种情况：12var 毫秒差 = 当前时间毫秒数-给定时间毫秒数var 秒差 = parseInt(毫秒差 / 1000,10) 刚刚 秒差 &lt; 60 几分前 秒差 &lt; 60 * 60 几时前 秒差 &lt; 60 * 60 * 24 几天前 秒差 &lt; 60 * 60 * 24 * 7 几周前 秒差 &lt; 60 * 60 * 24 * 7 *2 只显示7天到14天前的数据，显示1周前 显示年月日 代码123456789101112131415161718192021222324function rData(date,curDate)&#123; var curDate = curDate || new Date(); var timeStamp = parseInt((+curDate - +date)/1000,10); return timeStamp &lt; 60 ? &apos;刚刚&apos;: (timeStamp /= 60)&lt;60 ? parseInt(timeStamp)+&apos;分钟前&apos;: (timeStamp /= 60)&lt;24 ? parseInt(timeStamp)+&apos;小时前&apos;: (timeStamp /= 24)&lt;7 ? parseInt(timeStamp)+&apos;天前&apos;: (timeStamp /= 7)&lt;2 ? parseInt(timeStamp)+&apos;周前&apos;: date &gt; new Date(curDate.getFullYear()+&apos;-01-01&apos;) ? (date.getMonth()+1)+&apos;月&apos;+date.getDate()+&apos;日&apos; : date.getFullYear()+&apos;年&apos;+(date.getMonth()+1)+&apos;月&apos;+date.getDate()+&apos;日&apos;;&#125;//测试 var d1 = new Date(&apos;2017-03-02 14:00:30&apos;)Thu Mar 02 2017 14:00:30 GMT+0800 (中国标准时间)rData(d1,new Date(&apos;2017-03-02 14:00:31&apos;)) //&quot;刚刚&quot;rData(d1,new Date(&apos;2017-03-02 14:02:31&apos;)) //&quot;2分钟前&quot;rData(d1,new Date(&apos;2017-03-02 18:02:31&apos;)) //&quot;4小时前&quot;rData(d1,new Date(&apos;2017-03-05 18:02:31&apos;)) //&quot;3天前&quot;rData(d1,new Date(&apos;2017-03-09 18:02:31&apos;)) //&quot;1周前&quot;rData(d1,new Date(&apos;2017-03-16 18:02:31&apos;)) //&quot;3月2日&quot;rData(d1,new Date(&apos;2018-03-16 18:02:31&apos;)) //&quot;2017年3月2日&quot;]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Date</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用git写文章的几条命令]]></title>
     <url>%2F2017%2F03%2F01%2Fhowhexo%2F</url>
     <content type="text"><![CDATA[到blog所在的代码目录启动命令行 新建文章hexo new howhexo12D:\GOMEWORK\blog&gt; hexo new howhexoINFO Created: D:\GOMEWORK\blog\source\_posts\howhexo.md 启动本地serverhexo server 或者hexo s123D:\GOMEWORK\blog&gt; hexo sINFO Start processingINFO Hexo is running at http://localhost:4000/. Press Ctrl+C to stop. 此时你输入http://localhost:4000/就可以看到你blog的文章了然后你就使用markdown 在source/_posts/howhexo.md 去写文章 生成静态文件hexo generate 或 hexo g12345678910111213D:\GOMEWORK\blog&gt;hexo gINFO Start processingINFO Files loaded in 704 msINFO Generated: tags/index.htmlINFO Generated: search.xmlINFO Generated: index.htmlINFO Generated: archives/2017/index.htmlINFO Generated: archives/2017/03/index.htmlINFO Generated: archives/index.htmlINFO Generated: categories/备忘/index.htmlINFO Generated: tags/hexo/index.htmlINFO Generated: 2017/03/01/howhexo/index.htmlINFO 9 files generated in 1.57 s 部署网站如果你使用的是git 直接输出hexo deploy 部署之前预先生成静态文件1234567891011D:\GOMEWORK\blog&gt;hexo deployINFO Deploying: gitINFO Clearing .deploy_git folder...INFO Copying files from public folder...INFO Copying files from extend dirs...[master ebb02b2] Site updated: 2017-11-29 16:58:49 4 files changed, 6 insertions(+), 6 deletions(-)Branch master set up to track remote branch master from https://github.com/jufang/jufang.github.io.git.To https://github.com/jufang/jufang.github.io.git 566faaa..ebb02b2 HEAD -&gt; masterINFO Deploy done: git]]></content>
