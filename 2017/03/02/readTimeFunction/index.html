@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/*  date &amp;#123;Date&amp;#125; 日期格式  return &amp;#123;string&amp;#125;*/function rData(time)&amp;#123;  ...&amp;#125; 情形显示几种情况：12var 毫秒差 = 当前时间毫秒">
+<meta name="description" content="在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/*  date &amp;#123;Date&amp;#125; 日期格式  return &amp;#123;string&amp;#125;*/function rData(time)&amp;#123;  ...&amp;#125;">
 <meta name="keywords" content="Date">
 <meta property="og:type" content="article">
 <meta property="og:title" content="友好显示时间差">
 <meta property="og:url" content="http://smxlx.com/2017/03/02/readTimeFunction/index.html">
 <meta property="og:site_name" content="smxlx">
-<meta property="og:description" content="在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/*  date &amp;#123;Date&amp;#125; 日期格式  return &amp;#123;string&amp;#125;*/function rData(time)&amp;#123;  ...&amp;#125; 情形显示几种情况：12var 毫秒差 = 当前时间毫秒">
+<meta property="og:description" content="在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/*  date &amp;#123;Date&amp;#125; 日期格式  return &amp;#123;string&amp;#125;*/function rData(time)&amp;#123;  ...&amp;#125;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-30T12:27:18.950Z">
+<meta property="og:updated_time" content="2017-11-30T12:29:58.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="友好显示时间差">
-<meta name="twitter:description" content="在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/*  date &amp;#123;Date&amp;#125; 日期格式  return &amp;#123;string&amp;#125;*/function rData(time)&amp;#123;  ...&amp;#125; 情形显示几种情况：12var 毫秒差 = 当前时间毫秒">
+<meta name="twitter:description" content="在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】我们如何实现这个小功能 调用方式1234567/*  date &amp;#123;Date&amp;#125; 日期格式  return &amp;#123;string&amp;#125;*/function rData(time)&amp;#123;  ...&amp;#125;">
 
 
 
@@ -378,6 +378,7 @@
       
         <p>在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】<br>我们如何实现这个小功能</p>
 <p>调用方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">  date &#123;Date&#125; 日期格式</div><div class="line">  return &#123;string&#125;</div><div class="line">*/</div><div class="line">function rData(time)&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h1 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h1><p>显示几种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var 毫秒差 = 当前时间毫秒数-给定时间毫秒数</div><div class="line">var 秒差 = parseInt(毫秒差 / 1000,10)</div></pre></td></tr></table></figure></p>
 <ul>
 <li>刚刚  <code>秒差 &lt; 60</code></li>

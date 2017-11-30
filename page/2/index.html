@@ -382,7 +382,7 @@
 <p>等同于下面写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!function(this,$)&#123;</div><div class="line">...</div><div class="line">&#125;(window,jQuery)</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/03/CompatibleClosure/#more" rel="contents">
+            <a class="btn" href="/2017/03/03/CompatibleClosure/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -528,7 +528,7 @@
           <h1 id="自定义数组range"><a href="#自定义数组range" class="headerlink" title="自定义数组range"></a>自定义数组range</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Array.apply(null,&#123;length:3&#125;)  //[undefined, undefined, undefined]</div><div class="line">Array.call(null,&#123;length:3&#125;)     //[&#123;length:3&#125;]</div><div class="line"></div><div class="line">var a=[]</div><div class="line">Array.prototype.range=function(start,end)&#123;</div><div class="line">  var length=end-start;</div><div class="line">  var step = start - 1;</div><div class="line">  return Array.apply(null,&#123;length:length&#125;).map(function(v,i)&#123;step++;return step&#125;)</div><div class="line">  </div><div class="line">&#125;</div><div class="line">a.range(0,100) //显示0到99的数组  或者R.range(0,100)</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/02/ArrayGeneralFun/#more" rel="contents">
+            <a class="btn" href="/2017/03/02/ArrayGeneralFun/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -671,20 +671,15 @@
 
       
         
-          
-            <p>在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】<br>我们如何实现这个小功能</p>
+          <p>在博客评论中或者其他实时性强的网站中常常需要显示友好的时间格式:【刚刚，几秒前，几小时，几天前的时间格式】<br>我们如何实现这个小功能</p>
 <p>调用方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">  date &#123;Date&#125; 日期格式</div><div class="line">  return &#123;string&#125;</div><div class="line">*/</div><div class="line">function rData(time)&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h1><p>显示几种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var 毫秒差 = 当前时间毫秒数-给定时间毫秒数</div><div class="line">var 秒差 = parseInt(毫秒差 / 1000,10)</div></pre></td></tr></table></figure></p>
-<ul>
-<li>刚刚  <code>秒差 &lt; 60</code></li>
-<li>几分前 <code>秒差 &lt; 60 * 60</code></li>
-<li>几时前 <code>秒差 &lt; 60 * 60 * 24</code></li>
-<li>几天前 <code>秒差 &lt; 60 * 60 * 24 * 7</code></li>
-<li>几周前 <code>秒差 &lt; 60 * 60 * 24 * 7 *2</code> 只显示7天到14天前的数据，显示1周前</li>
-<li>显示年月日 </li>
-</ul>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">function rData(date,curDate)&#123;</div><div class="line">  var curDate = curDate || new Date();</div><div class="line">  var timeStamp =  parseInt((+curDate - +date)/1000,10);</div><div class="line"></div><div class="line">  return timeStamp &lt; 60 ? &apos;刚刚&apos;:</div><div class="line">    (timeStamp /= 60)&lt;60 ? parseInt(timeStamp)+&apos;分钟前&apos;:</div><div class="line">    (timeStamp /= 60)&lt;24 ? parseInt(timeStamp)+&apos;小时前&apos;:</div><div class="line">    (timeStamp /= 24)&lt;7 ? parseInt(timeStamp)+&apos;天前&apos;:</div><div class="line">    (timeStamp /= 7)&lt;2 ? parseInt(timeStamp)+&apos;周前&apos;:</div><div class="line">    date &gt; new Date(curDate.getFullYear()+&apos;-01-01&apos;) </div><div class="line">      ? (date.getMonth()+1)+&apos;月&apos;+date.getDate()+&apos;日&apos; :</div><div class="line">      date.getFullYear()+&apos;年&apos;+(date.getMonth()+1)+&apos;月&apos;+date.getDate()+&apos;日&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//测试 </div><div class="line">var d1 =  new Date(&apos;2017-03-02 14:00:30&apos;)</div><div class="line">Thu Mar 02 2017 14:00:30 GMT+0800 (中国标准时间)</div><div class="line">rData(d1,new Date(&apos;2017-03-02 14:00:31&apos;))  //&quot;刚刚&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-02 14:02:31&apos;))  //&quot;2分钟前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-02 18:02:31&apos;))  //&quot;4小时前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-05 18:02:31&apos;))  //&quot;3天前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-09 18:02:31&apos;))  //&quot;1周前&quot;</div><div class="line">rData(d1,new Date(&apos;2017-03-16 18:02:31&apos;))  //&quot;3月2日&quot;</div><div class="line">rData(d1,new Date(&apos;2018-03-16 18:02:31&apos;))  //&quot;2017年3月2日&quot;</div></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/02/readTimeFunction/#espandi" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -829,7 +824,7 @@
 <p>此时你输入<a href="http://localhost:4000/就可以看到你blog的文章了" target="_blank" rel="external">http://localhost:4000/就可以看到你blog的文章了</a><br>然后你就使用markdown 在source/_posts/howhexo.md 去写文章</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/01/howhexo/#more" rel="contents">
+            <a class="btn" href="/2017/03/01/howhexo/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -976,7 +971,7 @@
 <p><img src="/uploads/MarkDownUse/1.png" alt="标题"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/01/MarkDownUse/#more" rel="contents">
+            <a class="btn" href="/2017/03/01/MarkDownUse/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
